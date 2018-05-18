@@ -6,14 +6,14 @@ class RestFullAPI:
     
     def rest(self, request):
         if request.method == 'GET':
-            return self.get_request()
+            return self.get_request(request)
         elif request.method == 'POST':
             return self.post_request(request)
 
     def get_type(self):
         return self.content_type
 
-    def get_request(self):
+    def get_request(self, req):
         pass
 
     def post_request(self, req):
