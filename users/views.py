@@ -75,16 +75,16 @@ def get_users(request):
 def test(request):
     temp_obj = [
         {
-            'type': 'Rendering with React',
-            'url': '/'
-        },
-        {
             'type' : 'Components',
-            'url': '/art'
+            'url': '/user'
         },
         {
             'type' : 'Props v. State',
-            'url': '/art/info'
+            'url': '/user/create'
+        },
+        {
+            'type' : 'Main page',
+            'url': '/'
         }
     ]
     return HttpResponse(json.dumps(temp_obj))
