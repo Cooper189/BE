@@ -12,8 +12,10 @@ class SingleRecord(RestFullAPI):
             'userId': record.user_id,
             'startDate': record.startDate.timestamp() * 1000,
             'title': record.title,
-            'article': record.article
+            'article': record.article,
+            'userName': record.user_name
         })
+
     def put_request(self, req):
         post_body = json.loads(req.body)
         record = Records.objects.get(id=post_body['recordId'])
@@ -25,4 +27,4 @@ class SingleRecord(RestFullAPI):
     def delete_request(self, req):
         post_body = json.loads(req.body)
         Records.objects.get(id=post_body['recordId']).delete()
-        return 'done'
+        return str(post_body['recordId'])

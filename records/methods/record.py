@@ -2,6 +2,8 @@ from classes.rest import RestFullAPI
 from records.models import Records
 import json
 from django.utils import timezone
+from users.models import Users
+
 
 class RecordResponse(RestFullAPI):
     def __init__(self):
@@ -22,7 +24,14 @@ class RecordResponse(RestFullAPI):
     def post_request(self, req):
         post_body = json.loads(req.body)
         try:
-            temp_db = Records(user_id=post_body['userId'], startDate=timezone.now(),title=post_body['title'], article=post_body['article'])
+            temp = Users.objects.get(id=post_body['userId'])
+            temp_db = Records(
+                user_id=post_body['userId'], 
+                startDate=timezone.now(),
+                title=post_body['title'], 
+                article=post_body['article'], 
+                user_name=temp.user_name
+            )
             temp_db.save()
             self.status = 200
             return 'done'

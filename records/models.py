@@ -5,3 +5,4 @@ class Records(models.Model):
     startDate = models.DateTimeField('date published')
     title = models.CharField(max_length = 250)
     article = models.TextField()
+    user_name = models.CharField(max_length = 250)
